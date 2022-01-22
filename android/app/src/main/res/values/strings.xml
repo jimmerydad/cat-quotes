@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Cat Quotes</string>
+    <string name="title_activity_main">Cat Quotes</string>
+    <string name="package_name">org.romaine.app</string>
+    <string name="custom_url_scheme">org.romaine.app</string>
+</resources>

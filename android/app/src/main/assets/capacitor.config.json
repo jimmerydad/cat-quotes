@@ -1,0 +1,6 @@
+{
+	"appId": "org.romaine.app",
+	"appName": "Cat Quotes",
+	"webDir": "dist",
+	"bundledWebRuntime": false
+}
