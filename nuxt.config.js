@@ -1,6 +1,10 @@
 import colors from 'vuetify/es5/util/colors'
+import pkg from './package'
 
 export default {
+  env: {
+    version: pkg.version
+  },
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
@@ -31,6 +35,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/error-handler.js',
+    '~/plugins/axios.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -79,8 +85,8 @@ export default {
   build: {
     publicPath: '/nuxt/',
     /*
-                 ** You can extend webpack config here
-                 */
+                     ** You can extend webpack config here
+                     */
     extend (config, ctx) { }
   }
 }

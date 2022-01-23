@@ -24,6 +24,18 @@ https://capacitorjs.com/docs/basics/workflow
 
 ---
 
+## Attributions:
+
+Initial Cat Photo by <a href="https://unsplash.com/@arianassphotography?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Ariana Suárez</a> on <a href="https://unsplash.com/s/photos/surprised-cat?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+
+---
+
+## Tools User
+
+- Tried this https://phraseit.net/show/dhx0oe
+
+---
+
 ## Build Setup
 
 ```bash

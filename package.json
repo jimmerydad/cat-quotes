@@ -1,6 +1,6 @@
 {
   "name": "cat-quotes",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "author": {
     "name": "Jim Romaine",
@@ -22,7 +22,9 @@
     "@capacitor/cli": "^3.4.0",
     "@capacitor/core": "^3.4.0",
     "@nuxtjs/axios": "^5.13.6",
+    "@zaengle/error-handler": "^1.0.2",
     "core-js": "^3.19.3",
+    "file-saver": "^2.0.5",
     "nuxt": "^2.15.8",
     "vue": "^2.6.14",
     "vue-server-renderer": "^2.6.14",

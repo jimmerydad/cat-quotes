@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 <template>
   <v-app dark>
     <v-navigation-drawer
@@ -23,6 +24,25 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+      <v-divider />
+      <v-list>
+        <v-list-item>
+          <v-list-item-action>
+            <v-icon>mdi-cogs</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            Settings
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item>
+          <v-switch
+            v-model="$vuetify.theme.dark"
+            hint="This toggles the global state of the Vuetify theme"
+            inset
+            label="Dark Theme"
+          />
+        </v-list-item>
+      </v-list>
     </v-navigation-drawer>
     <v-app-bar
       :clipped-left="clipped"
@@ -37,28 +57,11 @@
         <Nuxt />
       </v-container>
     </v-main>
-    <v-navigation-drawer
-      v-model="rightDrawer"
-      :right="right"
-      temporary
-      fixed
-    >
-      <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
-            <v-icon light>
-              mdi-repeat
-            </v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
     <v-footer
       :absolute="!fixed"
       app
     >
-      <span>&copy; {{ new Date().getFullYear() }}</span>
+      <span>&copy; {{ new Date().getFullYear() }} Version {{ version }}</span>
     </v-footer>
   </v-app>
 </template>
@@ -68,26 +71,31 @@ export default {
   name: 'DefaultLayout',
   data () {
     return {
-      clipped: false,
+      clipped: true,
       drawer: false,
       fixed: false,
+      useDark: false,
+      version: '',
       items: [
         {
-          icon: 'mdi-apps',
+          icon: 'mdi-cat',
           title: 'Welcome',
           to: '/'
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
+          icon: 'mdi-thought-bubble',
+          title: 'Quote',
+          to: '/cat-quote'
         }
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Vuetify.js'
+      title: 'Cat Quotes'
     }
+  },
+  mounted () {
+    this.version = process.env.version
   }
 }
 </script>
