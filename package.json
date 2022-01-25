@@ -9,9 +9,12 @@
   "description": "Playground application for the Cat",
   "scripts": {
     "dev": "nuxt",
+    "build-full": "nuxt build && nuxt generate && npx cap copy && npx cap open android && date",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
+    "npxcapcopyAndroid": "npx cap copy",
+    "npxcapopenandroid": "npx cap open android",
     "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
     "lint": "npm run lint:js",
     "lintfix": "npm run lint:js -- --fix",

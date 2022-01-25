@@ -1,8 +1,8 @@
 <template>
   <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
+    <v-col cols="12" xs="12" sm="8" md="6">
       <v-card class="logo py-4 d-flex justify-center">
-        <img :src="homeImage" width="800px">
+        <img :src="homeImage" width="100%">
       </v-card>
       <v-card>
         <v-card-title class="headline">
