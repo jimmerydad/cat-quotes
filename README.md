@@ -24,6 +24,10 @@ https://capacitorjs.com/docs/basics/workflow
 
 ---
 
+## Semantic Versioning
+
+Using git requires a slightly different approach to semantic versioning. Part of it will be listed in the package file, others will be seen in the tags used in github.
+
 ## Attributions:
 
 Initial Cat Photo by <a href="https://unsplash.com/@arianassphotography?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Ariana Suárez</a> on <a href="https://unsplash.com/s/photos/surprised-cat?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
