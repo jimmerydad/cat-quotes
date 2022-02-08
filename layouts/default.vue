@@ -24,25 +24,6 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
-      <v-divider />
-      <v-list>
-        <v-list-item>
-          <v-list-item-action>
-            <v-icon>mdi-cogs</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            Settings
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item>
-          <v-switch
-            v-model="$vuetify.theme.dark"
-            hint="This toggles the global state of the Vuetify theme"
-            inset
-            label="Dark Theme"
-          />
-        </v-list-item>
-      </v-list>
     </v-navigation-drawer>
     <v-app-bar
       :clipped-left="clipped"
@@ -86,6 +67,11 @@ export default {
           icon: 'mdi-thought-bubble',
           title: 'Quote',
           to: '/cat-quote'
+        },
+        {
+          icon: 'mdi-cogs',
+          title: 'settings',
+          to: '/settings'
         }
       ],
       miniVariant: false,
