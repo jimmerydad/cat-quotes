@@ -29,6 +29,11 @@ export default {
     ]
   },
 
+   publicRuntimeConfig: {
+    logLevel: '${LOG_LEVEL}',
+    version: pkg.version,
+   }
+  
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
   ],
@@ -36,7 +41,8 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/error-handler.js',
-    '~/plugins/axios.js'
+    '~/plugins/axios.js',
+    { src: '@/plugins/logging.js' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
