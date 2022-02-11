@@ -100,7 +100,8 @@ export default {
     return {
       quoteLocation: 'above',
       quoteType: 'random',
-      theme: false
+      theme: false,
+      imageType: 'gif'
     }
   },
 
@@ -109,20 +110,31 @@ export default {
     ...mapGetters({
       quoteLoc: 'getQuoteLocation',
       quote: 'getQuote',
-      imageType: 'getImageType',
+      getImageType: 'getImageType',
       pixid: 'getPixid',
       getTheme: 'getTheme'
     })
 
   },
-
   watch: {
     // whenever question changes, this function will run
     theme (newVal, oldVal) {
       this.setTheme(newVal)
       this.$vuetify.theme.dark = newVal
       console.log('theme: ' + this.getTheme)
+    },
+    imageType (newVal, oldVal) {
+      this.setImageType(newVal)
+    },
+    quoteLocation (newVal, oldVal) {
+      this.setQuoteLocation(newVal)
     }
+
+  },
+  mounted () {
+    this.imageType = this.getImageType
+    this.theme = this.getTheme
+    this.quoteLocation = this.quoteLoc
   },
   methods: {
     ...mapActions([

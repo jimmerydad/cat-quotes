@@ -46,6 +46,9 @@ export const mutations = {
   },
   setTheme (state, value) {
     state.theme = value
+  },
+  setImageType (state, value) {
+    state.imageType = value
   }
 }
 

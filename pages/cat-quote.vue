@@ -100,7 +100,8 @@ export default {
     getQuoteText () {
       // TODO: use quote configuration
       let t = 'some message here ok?'
-      t = t.replace(' ', '%20')
+      t = encodeURIComponent(t)
+
       return t
     }
 
