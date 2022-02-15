@@ -10,7 +10,8 @@ export default {
 
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
-
+  // since nuxt 2.123
+  components: true,
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - cat-quotes',
@@ -29,11 +30,11 @@ export default {
     ]
   },
 
-   publicRuntimeConfig: {
-    logLevel: '${LOG_LEVEL}',
-    version: pkg.version,
-   }
-  
+  publicRuntimeConfig: {
+    logLevel: process.env.LOG_LEVEL,
+    version: pkg.version
+  },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
   ],
@@ -42,7 +43,7 @@ export default {
   plugins: [
     '~/plugins/error-handler.js',
     '~/plugins/axios.js',
-    { src: '@/plugins/logging.js' },
+    { src: '@/plugins/logging.js' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
