@@ -1,6 +1,8 @@
 /* eslint-disable no-console */
 
 const CAT_SERVICE = 'https://cataas.com/cat'
+
+const CAT_JSON = '?json=true'
 // https://icanhazdadjoke.com/api
 const DAD_QUOTE = 'https://icanhazdadjoke.com/'
 
@@ -13,7 +15,9 @@ const getDefaultState = () => {
     quoteLocation: 'above',
     imageType: 'gif',
     theme: '',
-    pixId: '60ef3f0151a2ca0011c7455d'
+    pixId: '60ef3f0151a2ca0011c7455d',
+    quoteBy: '',
+    catService: ''
   }
 }
 
@@ -25,7 +29,9 @@ export const getters = {
   getQuoteLocation: state => state.quoteLocation,
   getPixId: state => state.pixId,
   getImageType: state => state.imageType,
-  getTheme: state => state.theme
+  getTheme: state => state.theme,
+  getQuoteBy: state => state.quoteBy,
+  getCatService: () => CAT_SERVICE
   // getTypeByCode: state => (code) => {
   //   return state.documentationTypes.find(value => value.code === code).description
   // }
@@ -34,6 +40,9 @@ export const getters = {
 export const mutations = {
   setQuote (state, value) {
     state.quote = value
+  },
+  setQuoteBy (state, value) {
+    state.quoteBy = value
   },
   setPix (state, value) {
     state.pix = value
@@ -116,6 +125,18 @@ export const actions = {
     ]
   },
 
+  async catJSON ({ commit, state }, gif) {
+    let url = CAT_SERVICE
+    if (gif) {
+      url += '/gif'
+    }
+    url += CAT_JSON
+    const result = await this.$axios.get(url)
+    console.log('result: ', result)
+    // encodeURIComponent not sending it so just use
+    commit('setPixId', (result.data.id))
+  },
+
   async getCatPix ({ commit, state }, params) {
     const url = CAT_SERVICE
     const result = await this.$axios.get(url, {})
@@ -129,27 +150,34 @@ export const actions = {
     // return await processAxios({ commit }, this.$axios, url, params, 'Cat As Service', 'Cat Service', 'setPix')
   },
 
+  async useGetAx ({ commit, state }, params) {
+    const url = params.url
+    const config = params.config
+    const result = await getAxios({ commit }, this.$axios, url, config, null, 'Dad Quote', 'Dad Quote Service', 'setQuote')
+    return result
+  },
   async getDadQuote ({ commit, state }, params) {
     const url = DAD_QUOTE
     // 'User-Agent': 'Catty (https://github.com/jimmerydad/cat-quotes)'
-    const config = {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      }
-    }
-    const result = await getAxios({ commit }, this.$axios, url, config, null, 'Dad Quote', 'Dad Quote Service', 'setQuote')
-    console.log('result: ', result)
+    // const config = {
+    //   headers: {
+    //     Accept: 'application/json',
+    //     'Content-Type': 'application/json'
+    //   }
+    // }
+    // const result = await getAxios({ commit }, this.$axios, url, config, null, 'Dad Quote', 'Dad Quote Service', 'setQuote')
+    // console.log('result: ', result)
     // Accept: 'application/json',
     // 'User-Agent': 'Catty (https://github.com/jimmerydad/cat-quotes)',
-    const result2 = await this.$axios.get(url, {
+    const result = await this.$axios.get(url, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
       }
     })
-    console.log('result2: ', result2)
-    return result
+    console.log('result: ', result)
+    // encodeURIComponent not sending it so just use
+    commit('setQuote', (result.data.joke))
   },
 
   // async updateUserProfile ({ commit, state }, up) {

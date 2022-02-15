@@ -80,10 +80,6 @@
                 value="random"
               />
             </v-radio-group>
-
-            <v-btn class="primary" @click="getDadQuote">
-              Test Dad
-            </v-btn>
           </div>
         </v-card-text>
       </v-card>

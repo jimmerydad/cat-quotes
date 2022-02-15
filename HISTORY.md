@@ -1,3 +1,9 @@
+# 1.1.4 First working update and selectionss
+
+- Only Dad Quote is this go around
+- Added options to update either the picture or the quote (appears to be a timing thing if too frequent)
+- able to choose either statc or gif
+
 # 1.1.3 Settings to Vuex pull on mount
 
 - theme 🌓

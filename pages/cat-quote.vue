@@ -1,64 +1,85 @@
-/* eslint-disable no-console */
-/* eslint-disable no-console */
 <template>
   <div>
+    <link href="https://fonts.googleapis.com/css?family=Architects Daughter" rel="stylesheet">
     <v-row>
       <v-col class="text-center">
-        <blockquote v-if="quoteLoc==='above'" class="blockquote">
-          &#8220;Some Quote Here {{ quote }}&#8221;
-          <footer>
-            <small>
-              <em>&mdash; Who</em>
-            </small>
-          </footer>
-        </blockquote>
+        <quote quote-loc="above" :show="quoteLoc==='above'" class="quote large" size="35px" />
       </v-col>
     </v-row>
     <v-row>
       <v-col class="text-center">
-        <img
-          :src="url"
-          alt="Static Cat as service"
-          class="mb-5"
-          width="100%"
-        >
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col class="text-center">
-        <blockquote v-if="quoteLoc==='below'" class="blockquote">
-          &#8220;Some Quote Here {{ quote }}&#8221;
-          <footer>
-            <small>
-              <em>&mdash; Who</em>
-            </small>
-          </footer>
-        </blockquote>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
-        <div>
-          https://cataas.com/cat/says/Something+goes+here?wi=800
-
-          /cat?width=:width or /cat?height=:height
-          /c?wi=:width or /c?he=:height Will return a random cat with :width or :height
-          /cat?html=true Will return a random cat in a HTML page, usefull for Twitter or Facebook embedded render
-          /cat?json=true Will return a random cat in a JSON object
-          /c/gif/s/Hello?fi=sepia&c=orange&s=40&t=or Mix 'em all :D
+        <div class="container">
+          <img
+            :src="url"
+            alt="Cat as service"
+            class="mb-5"
+            width="100%"
+            height="600px"
+          >
+          <div v-if="quoteLoc==='on'" class="centered quote medium">
+            {{ quote }}
+          </div>
         </div>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col class="text-center">
+        <quote quote-loc="below" :show="quoteLoc==='below'" class="quote" size="35px" />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col
+        cols="12"
+        xs="6"
+        sm="4"
+      >
+        <v-switch
+          v-model="newPix"
+          class="col-6"
+          hint="Grab a new picture"
+          inset
+          label="New picture"
+        />
+      </v-col>
+      <v-col
+
+        xs="6"
+        sm="4"
+      >
+        <v-switch
+          v-model="newQuote"
+          hint="Grab a new quote"
+          inset
+          label="New Quote"
+        />
+      </v-col>
+      <v-col
+        xs="6"
+        sm="4"
+      >
+        <v-btn class="primary" :disabled="!newPix && !newQuote" @click="update">
+          <v-icon class="mx-3">
+            mdi-cat
+          </v-icon>
+          Cat Me!
+        </v-btn>
       </v-col>
     </v-row>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
+
 export default {
   name: 'CatQuote',
+
   data () {
     return {
-      url: ''
+      url: '',
+      quoteBy: '',
+      newQuote: false,
+      newPix: false
     }
   },
 
@@ -69,42 +90,73 @@ export default {
       quote: 'getQuote',
       imageType: 'getImageType',
       pixid: 'getPixId',
-      getTheme: 'getTheme'
+      getTheme: 'getTheme',
+      catService: 'getCatService'
+
     }
     )
   },
 
   mounted () {
-    this.getUrl()
     this.$vuetify.theme.dark = this.getTheme
+    this.getCatId()
+    this.getCatUrl()
+    this.getQuoteText()
   },
   methods: {
-    getUrl () {
-      // TODO if optino to keep same image need the pixid
-      // if text is on image... then use the 'says' option
-      const msg = this.getQuoteText()
-      // option to say something
-      // src="cat/says/Something+goes+here?wi=800"
-      let u = 'https://cataas.com/'
-      if (this.imageType === 'gif') {
-        u += 'c/gif'
-      } else {
-        u += 'cat'
+    ...mapMutations(['setQuote']),
+    ...mapActions([
+      'getDadQuote', 'catJSON'
+    ]),
+    getCatId () {
+      // get a new id if blank of toggled to
+      if (this.pixid === '' || this.newPix) {
+        this.catJSON(this.imageType === 'gif')
       }
-      if (this.quoteLoc === 'on') {
-        u += '/s/' + msg
-      }
-      console.log('url made: ' + u)
+    },
+    getCatUrl () {
+      const u = this.catService + '/' + this.pixid
+      console.log('cat url:' + u)
       this.url = u
     },
+
     getQuoteText () {
       // TODO: use quote configuration
-      let t = 'some message here ok?'
-      t = encodeURIComponent(t)
-
-      return t
+      if (this.getQuote == null || this.getQuote === '') {
+        this.getDadQuote()
+      }
+    },
+    update () {
+      if (this.newQuote) {
+        this.getDadQuote()
+      }
+      this.getCatId()
+      this.getCatUrl()
     }
 
   }
 }
 </script>
+
+<style>
+@import 'https://fonts.googleapis.com/css?family=Architects Daughter';
+.quote {
+    font-family: 'Architects Daughter';
+}
+.medium{
+font-size: 22px;
+}
+
+.centered {
+  position: absolute;
+  top: 75%;
+  left: 40%;
+  transform: translate(-30%, -70%);
+  background: rgba(45, 189, 45, 0.664);
+}
+
+.container {
+  position: relative;
+  text-align: center;
+}
+</style>
