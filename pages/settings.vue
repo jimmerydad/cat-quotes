@@ -82,6 +82,18 @@
             </v-radio-group>
           </div>
         </v-card-text>
+        <v-card-actions>
+          <v-spacer />
+          <v-btn
+            color="primary"
+            nuxt
+            to="/cat-quote"
+          >
+            <v-icon class="mx-3">
+              mdi-cat
+            </v-icon> Get Me a Cat Quote!
+          </v-btn>
+        </v-card-actions>
       </v-card>
     </v-col>
   </v-row>

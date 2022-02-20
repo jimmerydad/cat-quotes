@@ -3,7 +3,7 @@
     <link href="https://fonts.googleapis.com/css?family=Architects Daughter" rel="stylesheet">
     <v-row>
       <v-col class="text-center">
-        <quote quote-loc="above" :show="quoteLoc==='above'" class="quote large" size="35px" />
+        <quote quote-loc="above" :show="quoteLoc==='above'" size="18px" />
       </v-col>
     </v-row>
     <v-row>
@@ -24,7 +24,7 @@
     </v-row>
     <v-row>
       <v-col class="text-center">
-        <quote quote-loc="below" :show="quoteLoc==='below'" class="quote" size="35px" />
+        <quote quote-loc="below" :show="quoteLoc==='below'" size="18px" />
       </v-col>
     </v-row>
     <v-row>
@@ -142,9 +142,6 @@ export default {
 @import 'https://fonts.googleapis.com/css?family=Architects Daughter';
 .quote {
     font-family: 'Architects Daughter';
-}
-.medium{
-font-size: 22px;
 }
 
 .centered {
