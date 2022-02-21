@@ -10,8 +10,7 @@ export default {
 
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
-  // since nuxt 2.123
-  components: true,
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - cat-quotes',
@@ -45,7 +44,7 @@ export default {
     '~/plugins/axios.js',
     { src: '@/plugins/logging.js' }
   ],
-
+  // since nuxt 2.123
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
@@ -60,13 +59,31 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+
+    '@nuxtjs/proxy'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/'
+    // baseURL: '/',
+    // Do away with the baseUrl when using proxy
+    proxy: true,
+    credentials: false
+
+  },
+
+  proxy: {
+    // Simple proxy
+    '/api-inspire/': {
+      target: 'https://inspiration.goprogram.ai/',
+      pathRewrite: { '^/api-inspire/': '' }
+    },
+    '/api-affirm/': {
+      target: 'https://www.affirmations.dev/',
+      pathRewrite: { '^/api-affirm/': '' }
+    }
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
@@ -92,8 +109,8 @@ export default {
   build: {
     publicPath: '/nuxt/',
     /*
-                     ** You can extend webpack config here
-                     */
+                       ** You can extend webpack config here
+                       */
     extend (config, ctx) { }
   }
 }

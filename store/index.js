@@ -6,6 +6,14 @@ const CAT_JSON = '?json=true'
 // https://icanhazdadjoke.com/api
 const DAD_QUOTE = 'https://icanhazdadjoke.com/'
 
+const ADVICE = 'https://api.adviceslip.com/advice'
+
+// const AFFIRMATION = 'https://www.affirmations.dev/'
+const AFFIRMATION = '/api-affirm/'
+
+// const INSPIRATION = 'https://inspiration.goprogram.ai/'
+const INSPIRATION = '/api-inspire/'
+
 const FileSaver = require('file-saver')
 
 const getDefaultState = () => {
@@ -17,7 +25,9 @@ const getDefaultState = () => {
     theme: '',
     pixId: '60ef3f0151a2ca0011c7455d',
     quoteBy: '',
-    catService: ''
+    catService: '',
+    updateTimer: 30000,
+    quoteType: 'random'
   }
 }
 
@@ -31,6 +41,7 @@ export const getters = {
   getImageType: state => state.imageType,
   getTheme: state => state.theme,
   getQuoteBy: state => state.quoteBy,
+  getQuoteType: state => state.quoteType,
   getCatService: () => CAT_SERVICE
   // getTypeByCode: state => (code) => {
   //   return state.documentationTypes.find(value => value.code === code).description
@@ -43,6 +54,9 @@ export const mutations = {
   },
   setQuoteBy (state, value) {
     state.quoteBy = value
+  },
+  setQuoteType (state, value) {
+    state.quoteType = value
   },
   setPix (state, value) {
     state.pix = value
@@ -125,6 +139,53 @@ export const actions = {
     ]
   },
 
+  callAQuoteService ({ state, dispatch }, service) {
+    switch (service) {
+      case 'dad':
+        dispatch('getDadQuote')
+        return
+      case 'affirmation':
+        dispatch('getAffirmation')
+        return
+      case 'inspiration':
+        dispatch('getInspiration')
+        return
+      case 'advice':
+        dispatch('getAdvice')
+        return
+      default:
+        console.warn('quote type not configured')
+        break
+    }
+  },
+
+  getAQuote ({ state, dispatch, commit }) {
+    commit('setQuoteBy', '')
+    // depending on which quote type selected we will send a different request
+    if (state.quoteType === 'random') {
+      const numberOfSources = 4
+      const randomQuote = Math.floor(Math.random() * numberOfSources) + 1
+      switch (randomQuote) {
+        case 1:
+          dispatch('callAQuoteService', 'dad')
+          break
+        case 2:
+          dispatch('callAQuoteService', 'affirmation')
+          break
+        case 3:
+          dispatch('callAQuoteService', 'inspiration')
+          break
+        case 4:
+          dispatch('callAQuoteService', 'advice')
+          break
+        default:
+          console.warn('quote type not configured')
+      }
+    } else {
+      dispatch('callAQuoteService', state.quoteType)
+    }
+  },
+
   async catJSON ({ commit, state }, gif) {
     let url = CAT_SERVICE
     if (gif) {
@@ -155,6 +216,42 @@ export const actions = {
     const config = params.config
     const result = await getAxios({ commit }, this.$axios, url, config, null, 'Dad Quote', 'Dad Quote Service', 'setQuote')
     return result
+  },
+
+  async getAdvice ({ commit, state }, params) {
+    const url = ADVICE
+    const result = await this.$axios.get(url, {
+
+    })
+    console.log('result: ', result)
+    // encodeURIComponent not sending it so just use
+    commit('setQuote', (result.data.slip.advice))
+  },
+
+  async getAffirmation ({ commit, state }, params) {
+    const url = AFFIRMATION
+
+    const result = await this.$axios.get(url, {
+      headers: { 'Access-Control-Allow-Origin': '*' }
+    })
+    console.log('result: ', result)
+    // encodeURIComponent not sending it so just use
+    commit('setQuote', (result.data.affirmation))
+  },
+
+  async getInspiration ({ commit, state }, params) {
+    const url = INSPIRATION
+
+    const result = await this.$axios.get(url, {
+      headers: { 'Access-Control-Allow-Origin': '*' }
+    })
+    console.log('result: ', result)
+    // encodeURIComponent not sending it so just use
+    commit('setQuote', (result.data.quote))
+    commit('setQuoteBy', (result.data.author))
+  },
+  resetQuoteBy ({ commit }) {
+    commit('setQuoteBy', '')
   },
   async getDadQuote ({ commit, state }, params) {
     const url = DAD_QUOTE

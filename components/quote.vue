@@ -2,7 +2,11 @@
   <div>
     <link href="https://fonts.googleapis.com/css?family=Architects Daughter" rel="stylesheet">
     <div v-if="show" :style="'font-size: ' + size + '; font-family: \'' + family +'\''">
-      &#8220;{{ quote }}&#8221;
+      <span v-if="quoteBy!==''">&#8220;</span>
+
+      {{ quote }}
+      <span v-if="quoteBy!==''">&#8221;</span>
+
       <footer v-if="quoteBy !=''">
         <small>
           <em>&mdash; {{ quoteBy }}</em>
