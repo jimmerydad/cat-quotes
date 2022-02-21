@@ -1,3 +1,7 @@
+# 1.2.0
+
+- removed prior branches, prep for new logo
+
 # 1.1.6
 
 [#24](https://github.com/jimmerydad/cat-quotes/issues/24) Inspiration quote added
