@@ -1,4 +1,9 @@
-# 1.1.4 First working update and selectionss
+# 1.1.5
+
+- [#38](https://github.com/jimmerydad/cat-quotes/issues/38) Text size issue
+- [#37](https://github.com/jimmerydad/cat-quotes/issues/37) link to quote page from settings
+
+# 1.1.4 First working update and selections
 
 - Only Dad Quote is this go around
 - Added options to update either the picture or the quote (appears to be a timing thing if too frequent)

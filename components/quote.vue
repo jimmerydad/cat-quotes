@@ -1,13 +1,15 @@
 <template>
-  <blockquote v-if="show" class="blockquote" :style="'font-size: ' + size">
+  <div>
     <link href="https://fonts.googleapis.com/css?family=Architects Daughter" rel="stylesheet">
-    &#8220;{{ quote }}&#8221;
-    <footer v-if="quoteBy !=''">
-      <small>
-        <em>&mdash; {{ quoteBy }}</em>
-      </small>
-    </footer>
-  </blockquote>
+    <div v-if="show" :style="'font-size: ' + size + '; font-family: \'' + family +'\''">
+      &#8220;{{ quote }}&#8221;
+      <footer v-if="quoteBy !=''">
+        <small>
+          <em>&mdash; {{ quoteBy }}</em>
+        </small>
+      </footer>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -23,7 +25,8 @@ export default {
     quoteLoc: {
       type: String,
       default: ''
-    }
+    },
+    family: { type: String, default: 'Architects Daughter' }
   },
   computed: {
     // mix the getters into computed with object spread operator
@@ -42,4 +45,5 @@ export default {
 body {
     font-family: 'Architects Daughter';
 }
+
 </style>

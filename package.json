@@ -1,6 +1,6 @@
 {
   "name": "cat-quotes",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "private": true,
   "author": {
     "name": "Jim Romaine",
@@ -9,6 +9,8 @@
   "description": "Playground application for the Cat",
   "scripts": {
     "dev": "nuxt",
+    "build-full-tocopy": "nuxt build && nuxt generate && npx cap copy && date",
+    "npx-cap-open-android": "npx cap open android && date",
     "build-full": "nuxt build && nuxt generate && npx cap copy && npx cap open android && date",
     "build": "nuxt build",
     "start": "nuxt start",
