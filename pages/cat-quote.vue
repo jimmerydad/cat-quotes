@@ -17,7 +17,7 @@
             height="600px"
           >
           <div v-if="quoteLoc==='on'" class="centered quote medium">
-            {{ quote }}
+            <quote quote-loc="on" :show="quoteLoc==='on'" size="18px" />
           </div>
         </div>
       </v-col>
@@ -57,11 +57,22 @@
         xs="6"
         sm="4"
       >
-        <v-btn class="primary" :disabled="!newPix && !newQuote" @click="update">
+        <v-btn
+          class="primary"
+          :disabled="disableButton"
+          @click="update"
+        >
           <v-icon class="mx-3">
             mdi-cat
           </v-icon>
-          Cat Me!
+          <count-down
+            :timer-amount="10"
+            msg="seconds until next request"
+            :restart="restart"
+            @complete="completed()"
+          />
+          <span v-if="!disabled && noOptions">Select something to update</span>
+          <span v-if="!disabled && !noOptions">Cat Me!</span>
         </v-btn>
       </v-col>
     </v-row>
@@ -79,7 +90,9 @@ export default {
       url: '',
       quoteBy: '',
       newQuote: false,
-      newPix: false
+      newPix: false,
+      disabled: true,
+      restart: false
     }
   },
 
@@ -94,7 +107,13 @@ export default {
       catService: 'getCatService'
 
     }
-    )
+    ),
+    noOptions () {
+      return !this.newPix && !this.newQuote
+    },
+    disableButton () {
+      return this.noOptions || this.disabled
+    }
   },
 
   mounted () {
@@ -106,7 +125,7 @@ export default {
   methods: {
     ...mapMutations(['setQuote']),
     ...mapActions([
-      'getDadQuote', 'catJSON'
+      'getAQuote', 'catJSON'
     ]),
     getCatId () {
       // get a new id if blank of toggled to
@@ -123,15 +142,22 @@ export default {
     getQuoteText () {
       // TODO: use quote configuration
       if (this.getQuote == null || this.getQuote === '') {
-        this.getDadQuote()
+        this.getAQuote()
       }
     },
     update () {
       if (this.newQuote) {
-        this.getDadQuote()
+        this.getAQuote()
       }
       this.getCatId()
       this.getCatUrl()
+      this.disabled = true
+      this.restart = true
+    },
+    completed () {
+      console.log('should not be disabled now?')
+      this.disabled = false
+      this.restart = false
     }
 
   }

@@ -1,3 +1,8 @@
+# 1.1.6
+
+[#24](https://github.com/jimmerydad/cat-quotes/issues/24) Inspiration quote added
+[#23](https://github.com/jimmerydad/cat-quotes/issues/23) Advice quote added
+
 # 1.1.5
 
 - [#38](https://github.com/jimmerydad/cat-quotes/issues/38) Text size issue

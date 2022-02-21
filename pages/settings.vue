@@ -66,8 +66,13 @@
               />
               <v-radio
                 color="yellow lighten-2"
-                label="Inspiration Quotes"
+                label="Inspirational Quotes"
                 value="inspiration"
+              />
+              <v-radio
+                color="green accent-2"
+                label="Affirmation Quotes"
+                value="affirmation"
               />
               <v-radio
                 color="purple lighten-2"
@@ -88,10 +93,18 @@
             color="primary"
             nuxt
             to="/cat-quote"
+            :disabled="disabled"
           >
             <v-icon class="mx-3">
               mdi-cat
-            </v-icon> Get Me a Cat Quote!
+            </v-icon>
+            <count-down
+              :timer-amount="10"
+              msg="seconds until next request"
+              :restart="false"
+              @complete="completed()"
+            />
+            <span v-if="!disabled">Get Me a Cat Quote!</span>
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -101,7 +114,7 @@
 
 <script>
 // $vuetify.theme.dark
-import { mapActions, mapMutations, mapGetters } from 'vuex'
+import { mapMutations, mapGetters } from 'vuex'
 export default {
   name: 'SettingsPage',
   data () {
@@ -109,7 +122,8 @@ export default {
       quoteLocation: 'above',
       quoteType: 'random',
       theme: false,
-      imageType: 'gif'
+      imageType: 'gif',
+      disabled: true
     }
   },
 
@@ -119,10 +133,10 @@ export default {
       quoteLoc: 'getQuoteLocation',
       quote: 'getQuote',
       getImageType: 'getImageType',
-      pixid: 'getPixid',
-      getTheme: 'getTheme'
+      pixid: 'getPixId',
+      getTheme: 'getTheme',
+      getQuoteType: 'getQuoteType'
     })
-
   },
   watch: {
     // whenever question changes, this function will run
@@ -136,6 +150,9 @@ export default {
     },
     quoteLocation (newVal, oldVal) {
       this.setQuoteLocation(newVal)
+    },
+    quoteType (newVal, oldVal) {
+      this.setQuoteType(newVal)
     }
 
   },
@@ -143,17 +160,19 @@ export default {
     this.imageType = this.getImageType
     this.theme = this.getTheme
     this.quoteLocation = this.quoteLoc
+    this.quoteType = this.getQuoteType
   },
   methods: {
-    ...mapActions([
-      'getDadQuote'
-    ]),
     ...mapMutations([
       'setImageType',
       'setQuoteType',
       'setQuoteLocation',
       'setTheme'
-    ])
+    ]),
+    completed () {
+      console.log('should not be disabled now?')
+      this.disabled = false
+    }
   }
 }
 
