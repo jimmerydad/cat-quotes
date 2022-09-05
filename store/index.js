@@ -8,12 +8,12 @@ const DAD_QUOTE = 'https://icanhazdadjoke.com/'
 
 const ADVICE = 'https://api.adviceslip.com/advice'
 
-// const AFFIRMATION = 'https://www.affirmations.dev/'
-const AFFIRMATION = '/api-affirm/'
+const AFFIRMATION = 'https://www.affirmations.dev/'
+// const AFFIRMATION = '/api-affirm/'
 
-// const INSPIRATION = 'https://inspiration.goprogram.ai/'
-const INSPIRATION = '/api-inspire/'
-
+const INSPIRATION = 'https://inspiration.goprogram.ai/'
+// const INSPIRATION = '/api-inspire/'
+const corsApiUrl = 'https://thingproxy.freeboard.io/fetch/'
 const FileSaver = require('file-saver')
 
 const getDefaultState = () => {
@@ -86,28 +86,28 @@ export const mutations = {
  * @param {*} commitTo the state object to update
  * @returns a success or error message
  */
-async function getAxios ({ commit }, ax, url, params, config, title, message, commitTo) {
-  let msg, data
-  try {
-    data = await ax.$get(url, params, config)
-    console.debug('config: ', config)
-    console.info(title + '  DATA from get formdata')
-    console.debug(data)
+// async function getAxios ({ commit }, ax, url, params, config, title, message, commitTo) {
+//   let msg, data
+//   try {
+//     data = await ax.$get(url, params, config)
+//     console.debug('config: ', config)
+//     console.info(title + '  DATA from get formdata')
+//     console.debug(data)
 
-    if (data.length > 0 || data.status === 200) {
-      commit(commitTo, data)
-      console.info('# of items returned from axios call: ' + data.length)
-      msg = 'success'
-    } else {
-      msg = 'Problem getting ' + title + ' from ' + data
-    }
-  } catch (err) {
-    console.error('error ' + title)
+//     if (data.length > 0 || data.status === 200) {
+//       commit(commitTo, data)
+//       console.info('# of items returned from axios call: ' + data.length)
+//       msg = 'success'
+//     } else {
+//       msg = 'Problem getting ' + title + ' from ' + data
+//     }
+//   } catch (err) {
+//     console.error('error ' + title)
 
-    msg = 'There was a problem getting the ' + message + ': ' + err
-  }
-  return msg
-}
+//     msg = 'There was a problem getting the ' + message + ': ' + err
+//   }
+//   return msg
+// }
 
 /**
  * This should probably pass of to the other function with a null parameter
@@ -211,25 +211,32 @@ export const actions = {
     // return await processAxios({ commit }, this.$axios, url, params, 'Cat As Service', 'Cat Service', 'setPix')
   },
 
-  async useGetAx ({ commit, state }, params) {
-    const url = params.url
-    const config = params.config
-    const result = await getAxios({ commit }, this.$axios, url, config, null, 'Dad Quote', 'Dad Quote Service', 'setQuote')
-    return result
-  },
+  // async useGetAx ({ commit, state }, params) {
+  //   const url = params.url
+  //   const config = params.config
+  //   const result = await getAxios({ commit }, this.$axios, url, config, null, 'Dad Quote', 'Dad Quote Service', 'setQuote')
+  //   return result
+  // },
 
+  /**
+   *
+   *
+   * @param {} param0  commit  -  saves vuex state, state - are the variables being passed between the components
+   * @param {*} params the additional headers in the request
+   */
   async getAdvice ({ commit, state }, params) {
-    const url = ADVICE
-    const result = await this.$axios.get(url, {
-
-    })
+    const url = corsApiUrl + ADVICE
+    // this.$axios.setHeader('Access-Control-Allow-Origin', '*')
+    const result = await this.$axios.get(url, {})
     console.log('result: ', result)
     // encodeURIComponent not sending it so just use
     commit('setQuote', (result.data.slip.advice))
   },
 
   async getAffirmation ({ commit, state }, params) {
-    const url = AFFIRMATION
+    const url = corsApiUrl + AFFIRMATION
+
+    this.$axios.setHeader('Access-Control-Allow-Origin', '*')
 
     const result = await this.$axios.get(url, {
       headers: { 'Access-Control-Allow-Origin': '*' }
@@ -240,7 +247,7 @@ export const actions = {
   },
 
   async getInspiration ({ commit, state }, params) {
-    const url = INSPIRATION
+    const url = corsApiUrl + INSPIRATION
 
     const result = await this.$axios.get(url, {
       headers: { 'Access-Control-Allow-Origin': '*' }
