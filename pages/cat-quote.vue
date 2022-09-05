@@ -1,9 +1,12 @@
 <template>
   <div>
-    <link href="https://fonts.googleapis.com/css?family=Architects Daughter" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css?family=Architects Daughter"
+      rel="stylesheet"
+    >
     <v-row>
       <v-col class="text-center">
-        <quote quote-loc="above" :show="quoteLoc==='above'" size="18px" />
+        <quote quote-loc="above" :show="quoteLoc === 'above'" size="18px" />
       </v-col>
     </v-row>
     <v-row>
@@ -16,23 +19,19 @@
             width="100%"
             height="600px"
           >
-          <div v-if="quoteLoc==='on'" class="centered quote medium">
-            <quote quote-loc="on" :show="quoteLoc==='on'" size="18px" />
+          <div v-if="quoteLoc === 'on'" class="centered quote medium">
+            <quote quote-loc="on" :show="quoteLoc === 'on'" size="18px" />
           </div>
         </div>
       </v-col>
     </v-row>
     <v-row>
       <v-col class="text-center">
-        <quote quote-loc="below" :show="quoteLoc==='below'" size="18px" />
+        <quote quote-loc="below" :show="quoteLoc === 'below'" size="18px" />
       </v-col>
     </v-row>
     <v-row>
-      <v-col
-        cols="12"
-        xs="6"
-        sm="4"
-      >
+      <v-col cols="12" xs="6" sm="4">
         <v-switch
           v-model="newPix"
           class="col-6"
@@ -41,11 +40,7 @@
           label="New picture"
         />
       </v-col>
-      <v-col
-
-        xs="6"
-        sm="4"
-      >
+      <v-col xs="6" sm="4">
         <v-switch
           v-model="newQuote"
           hint="Grab a new quote"
@@ -53,15 +48,8 @@
           label="New Quote"
         />
       </v-col>
-      <v-col
-        xs="6"
-        sm="4"
-      >
-        <v-btn
-          class="primary"
-          :disabled="disableButton"
-          @click="update"
-        >
+      <v-col xs="6" sm="4">
+        <v-btn class="primary" :disabled="disableButton" @click="update">
           <v-icon class="mx-3">
             mdi-cat
           </v-icon>
@@ -105,9 +93,7 @@ export default {
       pixid: 'getPixId',
       getTheme: 'getTheme',
       catService: 'getCatService'
-
-    }
-    ),
+    }),
     noOptions () {
       return !this.newPix && !this.newQuote
     },
@@ -124,15 +110,17 @@ export default {
   },
   methods: {
     ...mapMutations(['setQuote']),
-    ...mapActions([
-      'getAQuote', 'catJSON'
-    ]),
+    ...mapActions(['getAQuote', 'catJSON']),
+
     getCatId () {
       // get a new id if blank of toggled to
       if (this.pixid === '' || this.newPix) {
         this.catJSON(this.imageType === 'gif')
       }
     },
+    /*
+    Returns a url to the image provided from cat
+    */
     getCatUrl () {
       const u = this.catService + '/' + this.pixid
       console.log('cat url:' + u)
@@ -159,15 +147,15 @@ export default {
       this.disabled = false
       this.restart = false
     }
-
   }
 }
 </script>
 
 <style>
-@import 'https://fonts.googleapis.com/css?family=Architects Daughter';
+@import "https://fonts.googleapis.com/css?family=Architects Daughter";
+
 .quote {
-    font-family: 'Architects Daughter';
+  font-family: "Architects Daughter";
 }
 
 .centered {

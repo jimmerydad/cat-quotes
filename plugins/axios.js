@@ -3,24 +3,10 @@ import ErrorHandler from '@zaengle/error-handler'
 export default function ({ $axios, redirect, store, app, $config: { baseURL } }) {
   $axios.defaults.baseURL = baseURL
 
-  // const UNAUTHORIZED = 401
-  // look for unauthor errors? would the onResponseError be better for this?
-  // $axios.onResponse((response) => {
-  //   response => response,
-  //     (error) => {
-  //       console.warn('we handling error from axios request?')
-  //       if (error.response === UNAUTHORIZED) {
-  //         // go to home page?
-  //         console.warn('not authorized')
-  //         redirect('/')
-  //       }
-  //       return (Promise.reject(error))
-  //     }
-  // })
-
   $axios.onError((error) => {
     const errorResponse = new ErrorHandler(
       // Custom messages for specific statuses
+
       {
         400: '400 - Bad Data received. Please refresh and try again. If the problem continues, please contact support.',
         401: 'You must be logged in to access this.',
