@@ -75,15 +75,16 @@ export default {
   },
 
   proxy: {
+    // 2022-09-05 proxy not available in static generated project
     // Simple proxy
-    '/api-inspire/': {
-      target: 'https://inspiration.goprogram.ai/',
-      pathRewrite: { '^/api-inspire/': '' }
-    },
-    '/api-affirm/': {
-      target: 'https://www.affirmations.dev/',
-      pathRewrite: { '^/api-affirm/': '' }
-    }
+    // '/api-inspire/': {
+    //   target: 'https://inspiration.goprogram.ai/',
+    //   pathRewrite: { '^/api-inspire/': '' }
+    // },
+    // '/api-affirm/': {
+    //   target: 'https://www.affirmations.dev/',
+    //   pathRewrite: { '^/api-affirm/': '' }
+    // }
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify

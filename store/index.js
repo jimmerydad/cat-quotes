@@ -203,6 +203,7 @@ export const actions = {
     const result = await this.$axios.get(url, {})
     let newCat = {}
     const imageUrl = URL.createObjectURL(result)
+    console.log('image url: ' + imageUrl)
     if (imageUrl) {
       // Update your store with an object like this:
       newCat = { id: '123', url: imageUrl }

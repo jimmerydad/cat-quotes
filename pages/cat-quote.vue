@@ -15,10 +15,15 @@
           <img
             :src="url"
             alt="Cat as service"
+            title="Cat Image"
             class="mb-5"
             width="100%"
             height="600px"
           >
+          <div>
+            Url for image: {{ url }}
+            <a :href="url">Link to above image</a>
+          </div>
           <div v-if="quoteLoc === 'on'" class="centered quote medium">
             <quote quote-loc="on" :show="quoteLoc === 'on'" size="18px" />
           </div>

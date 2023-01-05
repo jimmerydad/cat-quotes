@@ -1,3 +1,6 @@
+# 1.3.4
+- image debugging issue
+
 # 1.3.3
 - rebuild due to image issue
 
