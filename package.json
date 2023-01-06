@@ -4,11 +4,12 @@
   "private": true,
   "author": {
     "name": "Jim Romaine",
-    "email": "jim.romaine@gmail.com"
+    "email": "jrromaine+githubquote@gmaildot.com"
   },
   "description": "Playground application for the Cat",
   "scripts": {
     "dev": "nuxt",
+    "nuxt-build-generated": "nuxt build && nuxt generate ",
     "build-full-tocopy": "nuxt build && nuxt generate && npx cap copy && date",
     "npx-cap-open-android": "npx cap open android && date",
     "build-full": "nuxt build && nuxt generate && npx cap copy && npx cap open android && date",
