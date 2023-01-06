@@ -1,3 +1,5 @@
+GIthub Pages fail to server nuxtjs distribution: https://jimmerydad.github.io/cat-quotes/dist/index.html
+
 # cat-quotes
 
 This is a playground based on instructions originating from: https://serversideup.net/using-nuxtjs-to-build-an-ios-and-android-app/
