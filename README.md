@@ -4,6 +4,10 @@ GIthub Pages fail to server nuxtjs distribution: https://jimmerydad.github.io/ca
 Need to update the index.html in dist folder for github pages to work properly
 > #140   basePath: "https:/jimmerydad.github.io/cat-quotes/dist",
 > #141      assetsPath: "/cat-quotes//dist/nuxt/",
+>
+> attempt 3
+>  basePath: "https:/jimmerydad.github.io/cat-quotes",
+ >         assetsPath: "/cat-quotes/dist/nuxt/",
 
 # cat-quotes
 
