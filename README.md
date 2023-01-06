@@ -1,5 +1,10 @@
 GIthub Pages fail to server nuxtjs distribution: https://jimmerydad.github.io/cat-quotes/dist/index.html
 
+## Github Pages tweaks
+Need to update the index.html in dist folder for github pages to work properly
+>>    basePath: "https:/jimmerydad.github.io/cat-quotes/dist",
+ >>       assetsPath: "/dist/nuxt/",
+
 # cat-quotes
 
 This is a playground based on instructions originating from: https://serversideup.net/using-nuxtjs-to-build-an-ios-and-android-app/
