@@ -13,7 +13,9 @@ const AFFIRMATION = 'https://www.affirmations.dev/'
 
 const INSPIRATION = 'https://inspiration.goprogram.ai/'
 // const INSPIRATION = '/api-inspire/'
-const corsApiUrl = 'https://thingproxy.freeboard.io/fetch/'
+// const corsApiUrl = 'https://thingproxy.freeboard.io/fetch/'
+// no proxying for web url
+const corsApiUrl = ''
 const FileSaver = require('file-saver')
 
 const getDefaultState = () => {
