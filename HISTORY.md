@@ -1,3 +1,16 @@
+# 1.3.4
+- image debugging issue
+
+# 1.3.3
+- rebuild due to image issue
+
+# 1.3.1
+- changed to new proxy to pass thru 3rd party api requests (CORS issue)[#47](https://github.com/jimmerydad/cat-quotes/issues/47)
+
+# 1.2.0
+
+- removed prior branches, prep for new logo
+
 # 1.1.6
 
 [#24](https://github.com/jimmerydad/cat-quotes/issues/24) Inspiration quote added

@@ -69,7 +69,8 @@ typings/
 .nuxt
 
 # Nuxt generate
-dist
+# adding for github pages
+#dist
 
 # vuepress build output
 .vuepress/dist
@@ -88,3 +89,5 @@ sw.*
 
 # Vim swap files
 *.swp
+ReleaseAndroid/CatQuotes-1.3.3-app-release.apk
+ReleaseAndroid/CatQuotes-1.3.4-app-release.apk

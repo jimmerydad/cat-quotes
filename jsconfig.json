@@ -1,12 +1,24 @@
 {
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "~/*": ["./*"],
-      "@/*": ["./*"],
-      "~~/*": ["./*"],
-      "@@/*": ["./*"]
-    }
-  },
-  "exclude": ["node_modules", ".nuxt", "dist"]
+    "compilerOptions": {
+        "baseUrl": "https://jimmerydad.github.io/cat-quotes",
+        "paths": {
+            "~/*": [
+                "./*"
+            ],
+            "@/*": [
+                "./*"
+            ],
+            "~~/*": [
+                "./*"
+            ],
+            "@@/*": [
+                "./*"
+            ]
+        }
+    },
+    "exclude": [
+        "node_modules",
+        ".nuxt",
+        "dist"
+    ]
 }
