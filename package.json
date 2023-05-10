@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@capacitor/android": "^3.4.0",
-    "@capacitor/cli": "^3.4.0",
+    "@capacitor/cli": "^5.0.3",
     "@capacitor/core": "^3.4.0",
     "@nuxtjs/axios": "^5.13.6",
     "@zaengle/error-handler": "^1.0.2",
